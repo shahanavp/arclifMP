@@ -1,0 +1,13 @@
+.image{
+    width: '7rem';
+    height: '7rem';
+    padding: '5px';
+}
+
+.nav
+{
+    background-color:gray;
+    width:"80rem";
+    height:"2rem";
+
+}
