@@ -26,7 +26,9 @@ app.use(methodOverride('_method'))
 
 const conn = mongoose.createConnection(process.env.MONGO_URI)
 
+app.use(express.static(path.join(__dirname,"./build")))
 let gfs;
+
 
 conn.once('open', () => {
   gridfsBucket = new mongoose.mongo.GridFSBucket(conn.db, {
@@ -319,16 +321,15 @@ app.post("/editproduct",(req,res) =>{
            res.json({msg:"success"})
       })
 
-
 //heruku step
-if (process.env.NODE_ENV =="production"){
-  app.use(express.static("myapp/build"));
-  const path=require("path")
-  app.get("*",(req,res)=>{
-    res.sendFile(path.resolve(__dirname,'myapp','build','index.html'));
-  })
-}
+// if (process.env.NODE_ENV =="production"){
+//   app.use(express.static("myapp/build"));
 
+ 
+// }
+ app.get("/*",(req,res)=>{
+    res.sendFile(path.join(__dirname+'/build/index.html'));
+  })
 
 // port listen
 
